@@ -32,7 +32,9 @@ Vagrant.configure(2) do |config|
     mkdir .bitcoin
     ln -s /vagrant/bitcoin.conf /home/vagrant/.bitcoin/
 
-    bitcoind -daemon
+    sudo ln -s /vagrant/bitcoin_supervisor.conf /etc/supervisor/conf.d
+    sudo supervisorctl reread
+    sudo supervisorctl update
 
     git clone https://github.com/fireduck64/jelectrum.git
     ln -s /vagrant/jelly.conf /home/vagrant/jelectrum/
